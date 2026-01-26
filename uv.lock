@@ -15,7 +15,7 @@ members = [
     "browser-controller",
     "ocr-finder",
     "screen-recorder",
-    "smykla-labs-research",
+    "smykla-skalski-research",
     "space-finder",
     "ui-inspector",
     "verified-screenshot",
@@ -1647,7 +1647,7 @@ wheels = [
 ]
 
 [[package]]
-name = "smykla-labs-research"
+name = "smykla-skalski-research"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [

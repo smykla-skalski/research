@@ -1,5 +1,5 @@
 [project]
-name = "smykla-labs-research"
+name = "smykla-skalski-research"
 version = "0.1.0"
 description = "Knowledge base and research artifacts for investigations, experiments, and learnings"
 requires-python = ">=3.11"
