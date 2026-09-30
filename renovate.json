@@ -1,6 +1,5 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "automerge": false,
   "extends": [
     "config:best-practices",
     ":semanticCommits",
@@ -9,23 +8,24 @@
     ":label(dependencies)",
     ":rebaseStalePrs",
     ":enableVulnerabilityAlertsWithAdditionalLabel(kind/security)",
-    ":automergeMinor",
-    ":automergeDigest",
-    ":automergeLinters",
-    ":automergeTesters",
     ":prConcurrentLimit20",
     "helpers:pinGitHubActionDigests",
     "security:openssf-scorecard",
     "group:linters"
   ],
-  "gitIgnoredAuthors": ["205507218+smyklot[bot]@users.noreply.github.com"],
-  "ignorePaths": [
-    "**/tmp/**",
-    ".github/workflows/smyklot-pr-commands.yml",
-    ".github/workflows/smyklot-poll.yml"
-  ],
+  "ignorePaths": ["**/tmp/**", ".github/workflows/smyklot-pr-commands.yml", ".github/workflows/smyklot-poll.yml"],
   "osvVulnerabilityAlerts": true,
+  "gitIgnoredAuthors": ["205507218+smyklot[bot]@users.noreply.github.com"],
+  "internalChecksFilter": "strict",
+  "platformAutomerge": false,
+  "minimumReleaseAgeBehaviour": "timestamp-required",
   "packageRules": [
+    {
+      "description": "Automerge updates with a verified release age of at least seven days",
+      "matchUpdateTypes": ["major", "minor", "patch", "digest"],
+      "minimumReleaseAge": "7 days",
+      "automerge": true
+    },
     {
       "addLabels": ["area/ci"],
       "commitMessageTopic": "{{depName}} action",
@@ -45,10 +45,8 @@
         " Group dependency bumps from selected GitHub sources into a single PR across managers",
         " (e.g., mise and gomod) to avoid separate PRs per manager"
       ],
-      "groupName": "{{{replace 'https://github\\.com/[a-z-]+/' '' sourceUrl}}}",
-      "matchSourceUrls": [
-        "https://github.com/{onsi/ginkgo,golangci/golangci-lint}"
-      ]
+      "matchSourceUrls": ["https://github.com/{onsi/ginkgo,golangci/golangci-lint}"],
+      "groupName": "{{{replace 'https://github\\.com/[a-z-]+/' '' sourceUrl}}}"
     },
     {
       "description": "Group Go version updates from gomod and mise into a single PR",
@@ -64,8 +62,7 @@
       "matchPackageNames": ["smykla-skalski/smyklot"]
     }
   ],
-  "schedule": ["on the first day of the month"],
-  "vulnerabilityAlerts": {
-    "automerge": false
-  }
+  "vulnerabilityAlerts": {"automerge": false},
+  "automerge": false,
+  "schedule": ["on the first day of the month"]
 }
